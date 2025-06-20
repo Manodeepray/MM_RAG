@@ -1,0 +1,16 @@
+{
+    "users": {
+        "abc": {
+            "password": "1234",
+            "db_id": "user_db_abc"
+        },
+        "manodeep": {
+            "password": "1234",
+            "db_id": "user_db_manodeep"
+        },
+        "rick": {
+            "password": "12345",
+            "db_id": "user_db_rick"
+        }
+    }
+}

@@ -1,30 +1,222 @@
-repo for my project at sail
+
+# ContactX – Intelligent Contact Management with RAG
+
+**ContactX** is an AI-powered smart assistant for managing contact cards.  
+It leverages **OCR**, **background search**, **FAISS vector DB**, and **LLM-based retrieval** to extract, enrich, and interact with contact data intelligently.
+
+---
+
+## 📸 What it does
+
+- 🧾 Upload **contact card images**
+- 🔍 Extracts text using **transformer-based OCR**
+- 🕵️‍♂️ Performs background search (company & individual) using **Tavily API**
+- 🧠 Enriches contact information and stores it in a **FAISS** vector DB
+- 💡 Uses LangChain's FAISS retriever to index and search contact data intelligently
+- 💬 Interacts with the data using **LLM** (Groq - `llama3-70b`)
+- 🔐 Uses **JWT authentication** and **FastAPI logging**
+- 🌐 Simple **Flask web frontend** with upload & chat UI
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer      | Tech                                                                 |
+|------------|----------------------------------------------------------------------|
+| Backend    | `FastAPI`, `FAISS`, `Tavily`, `Groq LLM`, `JWT`, `Pydantic`, `Uvicorn` , `langchain` |
+| OCR        | [`ds4sd/SmolDocling-256M`](https://huggingface.co/ds4sd/SmolDocling-256M-preview) |
+| LLM        | Groq API → `llama3-70b-versatile`                                    |
+| Search     | Tavily Web API                                                       |
+| Frontend   | `Flask`, `HTML`, `CSS`, `JS`                                         |
+
+---
+
+## ⚙️ Project Structure
 
 
-RAG with
+``` bash
+.
+├── README.md
+├── __init__.py
+├── __pycache__
+│   ├── __init__.cpython-312.pyc
+│   ├── app.cpython-312.pyc
+│   ├── auth.cpython-312.pyc
+│   ├── background_search.cpython-312.pyc
+│   ├── chatbot.cpython-312.pyc
+│   ├── image_to_ocr.cpython-312.pyc
+│   ├── llm.cpython-312.pyc
+│   ├── ocr_to_dict.cpython-312.pyc
+│   ├── retriever.cpython-312.pyc
+│   └── server.cpython-312.pyc
+├── app.py
+├── client.py
+├── data
+│   ├── img_database
+│   │   ├── 20240625_154117.jpg
+│   │   ├── 20250620_200601_20240625_154117.jpg
+│   │   ├── 20250620_200728_20240625_154117.jpg
+│   │   └── 20250620_201036_20240625_154117.jpg
+│   ├── users.json
+│   └── vector_dbs
+│       └── user_db_rick
+│           ├── index.faiss
+│           └── index.pkl
+|
+├── frontend
+│   ├── __pycache__
+│   │   └── app.cpython-312.pyc
+│   ├── app.py
+│   ├── static
+│   │   ├── SAIL_Logo.png
+│   │   ├── chat.js
+│   │   ├── chatbot.css
+│   │   └── style.css
+│   └── templates
+│       ├── chat.html
+│       ├── index.html
+│       └── login.html
+├── notebooks
+│   └── card_detection.ipynb
+├── server.log
+├── server.py
+├── src
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── auth.cpython-312.pyc
+│   │   ├── background_search.cpython-312.pyc
+│   │   ├── chatbot.cpython-312.pyc
+│   │   ├── image_to_ocr.cpython-312.pyc
+│   │   ├── llm.cpython-312.pyc
+│   │   ├── ocr_to_dict.cpython-312.pyc
+│   │   └── retriever.cpython-312.pyc
+│   ├── auth.py
+│   ├── background_search.py
+│   ├── chatbot.py
+│   ├── database.py
+│   ├── image_to_ocr.py
+│   ├── llm.py
+│   ├── ocr_to_dict.py
+│   └── retriever.py
+├── todo.md
+└── vector_dbs
 
-multimodality  - read universal RAG paper = notebook LM + github repo
-expandable vectorstore
-distributed
-fast inference
-sys design topics
-Auto scaling
-encryption and safe databases
+```
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Route                         | Description                     |
+| ------ | ----------------------------- | ------------------------------- |
+| POST   | `/login-register`             | Login/Register with JWT         |
+| GET    | `/user/{db_id}`               | Load vector index and chatbot   |
+| POST   | `/users/{db_id}/query`        | Query using LLM+FAISS           |
+| POST   | `/users/{db_id}/add_contacts` | Upload and add contacts via OCR |
+
+---
+
+## ▶️ Running the Project
+
+### 1. Start Backend Server (FastAPI)
+
+```bash
+# from project root
+fastapi run server.py
+```
+
+* Visit: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) for Swagger UI
+
+---
+
+### 2. Start Frontend (Flask)
+
+```bash
+cd frontend
+flask run
+```
+
+* Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+---
+
+## 📦 Example Usage (Swagger UI)
+
+1. **Register/Login** using `/login-register`
+   Payload (JWT-encoded JSON):
+
+   ```json
+   {
+     "userid": "abc",
+     "password": "1234",
+     "action": "login"
+   }
+   ```
+
+2. **Initialize Chatbot** using `/user/{db_id}`
+
+3. **Upload Contact Images** to `/users/{db_id}/add_contacts`
+
+4. **Query Contact Info** via `/users/{db_id}/query`
+
+   ```json
+   {
+     "message": "Show me the contacts from Google"
+   }
+   ```
+
+---
+
+## 🔐 Security
+
+* JWT-encoded login/register payloads
+* Pydantic validation for all endpoints
+* Logging for major operations (index loading, user login, etc.)
+
+---
+
+## ✨ Future Improvements
+
+* [ ] Add contact tags (e.g., category: vendor, HR)
+* [ ] Vector DB cleanup & management dashboard
+* [ ] Dockerize and dploy on instance , add loadbancing etc 
+
+---
+
+## 👨‍💻 Author
+
+**Manodeep Ray**
+
+> Summer Intern – SAIL , meghahatuburu 
+> ContactX: Solving contact chaos with AI.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
 
 
 
-visoin model to detect cards and from any pic ..  upscale it plus makes it more readable
-ocr model for image to text ..or vit?
 
-back ground check ai agent that runs  whenever new added
-image compressiona and decpomression
+## 🔍 Preview Screens
 
-dockerised
-deployed on aws ec2
-fastHTML front-end
-search bar - fuzzy complete
+### 🔐 Login/Register
 
-finetune model maybe - using grpo , sft ,peft etc 
-evaluation pipeline important
+![Login Page](./media/preview-login.png)
 
-#note get important 
+---
+
+
+### 💬 Chat with ContactX
+
+![Chat](./media/preview-chat.png)
+
+---
+
+### 🖼️ Upload Contact Card example
+
+![card](./media/example-contact-card.png)
+
+---

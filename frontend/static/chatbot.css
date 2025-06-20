@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background-color: #e5e5e5;
+}
+
+/* Header */
+.header {
+  background-color: #2e3a59;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+}
+
+.app-title {
+  font-size: 32px;
+  margin: 0;
+}
+
+.x {
+  color: #2575fc;
+}
+
+.subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Layout */
+.main-container {
+  display: flex;
+  gap: 30px;
+  padding: 30px 40px;
+  justify-content: center;
+}
+
+/* Chat */
+.chatbox {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-log {
+  height: 500px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow-y: auto;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.chat {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.chat.user {
+  background-color: #daf0ff;
+  align-self: flex-start;
+}
+
+.chat.bot {
+  background-color: #f3f3f3;
+  align-self: flex-end;
+}
+
+.input-area {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.input-area input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+
+.input-area button {
+  padding: 10px 20px;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.input-area button:hover {
+  background-color: #1a5fd0;
+}
+
+/* Upload */
+.upload-section {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+  align-self: flex-start;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.upload-section input[type="file"] {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.upload-section button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2e3a59;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.upload-section button:hover {
+  background-color: #1a2747;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ContactX | Login</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="page-container">
+
+    <!-- Left: App Description -->
+    <div class="description-box">
+      <h1 class="desc-title">Welcome to Contact<span class="x-highlight">X</span></h1>
+      <p class="desc-text">
+        ContactX is your intelligent assistant for managing contacts.
+        Upload images of contact cards — the system extracts text using OCR, performs background searches on individuals and organizations, and enriches the data.
+        All information is stored in a FAISS vector database and retrieved using a powerful LLM-based interface.
+        Ask questions, retrieve details, or build insights — effortlessly.
+      </p>
+    </div>
+
+    <!-- Right: Login/Register Form -->
+    <div class="login-container">
+      <h1 class="title">Contact<span class="x-highlight">X</span></h1>
+      <p class="subtitle">Your smart contact assistant</p>
+
+      {% if message %}
+        <div class="error-box">{{ message }}</div>
+      {% endif %}
+
+      <form method="POST" class="login-form">
+        <input type="text" name="userid" placeholder="User ID" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <select name="action" required>
+          <option value="login">Login</option>
+          <option value="register">Register</option>
+        </select>
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+
+  </div>
+
+</body>
+</html>

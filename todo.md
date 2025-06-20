@@ -14,12 +14,25 @@ features:
 1. image / images -> OCRs -> structured outputs (at max 5 at once)
 2. search via imformations .. multiple vendors for each one ..
 3. long tructured prompt
+4. RAG plus background search agent
 
 
 Bonus:
-1. Save the images too in metadata of the structured output for further call MM RAG
-2. RAG plus search agent
+1. Save the images too in metadata of the structured output for further call MM RAG and show
 3. deploy , ci/cd , dockerise (((( IMPORTANT)))
-4. linting
+4. linting , logging
 5. private memory + login (nginx?)
-6. censor to the internet llm by small lm
+
+
+
+RAG with
+
+distributed
+fast inference
+sys design topics
+Auto scaling
+dockerised
+deployed on aws ec2
+fastHTML front-end
+
+evaluation pipeline important

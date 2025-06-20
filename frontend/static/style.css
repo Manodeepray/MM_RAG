@@ -1,0 +1,108 @@
+/* Reset & base style */
+
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(to right, #565356, #2e1446);
+ /* Ash grey */
+}
+
+/* Page Layout */
+.page-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* Left: Description */
+.description-box {
+  flex: 1;
+  max-width: 50%;
+  background-color: transparent;
+  padding: 40px;
+  color: white;
+}
+
+
+.desc-title {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.desc-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+}
+
+/* Highlight for X */
+.x-highlight {
+  color: #2575fc;
+}
+
+/* Right: Login Box */
+.login-container {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin-left: 60px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Login Form */
+.login-form input,
+.login-form select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: #1a5fd0;
+}
+
+/* Error Message */
+.error-box {
+  color: white;
+  background-color: #e74c3c;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+}

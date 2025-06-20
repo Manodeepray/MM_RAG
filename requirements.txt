@@ -1,0 +1,18 @@
+# === FastAPI Backend ===
+fastapi
+uvicorn
+pydantic
+python-multipart
+python-dotenv
+faiss-cpu
+requests
+tavily-python
+groq
+transformers
+torch
+Pillow
+pyjwt
+langchain
+
+# === Flask Frontend ===
+flask

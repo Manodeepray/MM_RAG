@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ContactX | Chat</title>
+  <link rel="stylesheet" href="/static/chatbot.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-area">
+      <img src="/static/SAIL_Logo.png" alt="SAIL Logo" class="logo" />
+      <h1 class="app-title">Contact<span class="x">X</span></h1>
+    </div>
+    <p class="subtitle">Your Smart Contact Assistant</p>
+  </div>
+
+  <!-- Main Section -->
+  <div class="main-container">
+    <!-- Chatbox -->
+    <div class="chatbox">
+      <div id="chat-box" class="chat-log"></div>
+      <div class="input-area">
+        <input type="text" id="msg" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+      <h3>Add Contacts</h3>
+      <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" name="images" multiple />
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById("msg").value;
+      const res = await fetch("/query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg }),
+      });
+      const data = await res.json();
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML += `<div class="chat user"><b>You:</b> ${msg}</div>`;
+      chatBox.innerHTML += `<div class="chat bot">${marked.parse(data.response)}</div>`;
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    document.getElementById("upload-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch("/add_contacts", {
+        method: "POST",
+        body: formData,
+      });
+      alert(await res.text());
+    });
+  </script>
+
+</body>
+</html>
