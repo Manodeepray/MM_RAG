@@ -39,34 +39,15 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversation
 .
 ├── README.md
 ├── __init__.py
-├── __pycache__
-│   ├── __init__.cpython-312.pyc
-│   ├── app.cpython-312.pyc
-│   ├── auth.cpython-312.pyc
-│   ├── background_search.cpython-312.pyc
-│   ├── chatbot.cpython-312.pyc
-│   ├── image_to_ocr.cpython-312.pyc
-│   ├── llm.cpython-312.pyc
-│   ├── ocr_to_dict.cpython-312.pyc
-│   ├── retriever.cpython-312.pyc
-│   └── server.cpython-312.pyc
 ├── app.py
 ├── client.py
+|
 ├── data
 │   ├── img_database
-│   │   ├── 20240625_154117.jpg
-│   │   ├── 20250620_200601_20240625_154117.jpg
-│   │   ├── 20250620_200728_20240625_154117.jpg
-│   │   └── 20250620_201036_20240625_154117.jpg
 │   ├── users.json
 │   └── vector_dbs
-│       └── user_db_rick
-│           ├── index.faiss
-│           └── index.pkl
 |
 ├── frontend
-│   ├── __pycache__
-│   │   └── app.cpython-312.pyc
 │   ├── app.py
 │   ├── static
 │   │   ├── SAIL_Logo.png
@@ -77,22 +58,13 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversation
 │       ├── chat.html
 │       ├── index.html
 │       └── login.html
+|
 ├── notebooks
 │   └── card_detection.ipynb
 ├── server.log
 ├── server.py
 ├── src
 │   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-312.pyc
-│   │   ├── auth.cpython-312.pyc
-│   │   ├── background_search.cpython-312.pyc
-│   │   ├── chatbot.cpython-312.pyc
-│   │   ├── image_to_ocr.cpython-312.pyc
-│   │   ├── llm.cpython-312.pyc
-│   │   ├── ocr_to_dict.cpython-312.pyc
-│   │   └── retriever.cpython-312.pyc
-│   ├── auth.py
 │   ├── background_search.py
 │   ├── chatbot.py
 │   ├── database.py
