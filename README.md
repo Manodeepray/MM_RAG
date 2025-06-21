@@ -2,7 +2,7 @@
 # ContactX – Intelligent Contact Management with RAG
 
 **ContactX** is an AI-powered smart assistant for managing contact cards.  
-It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversational Mwmory**,and **LLM-based retrieval** to extract, enrich, and interact with contact data intelligently.
+It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversational Memory**,and **LLM-based retrieval** to extract, enrich, and interact with contact data intelligently.
 
 ---
 
