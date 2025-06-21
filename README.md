@@ -37,11 +37,6 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversation
 
 ``` bash
 .
-├── README.md
-├── __init__.py
-├── app.py
-├── client.py
-|
 ├── data
 │   ├── img_database
 │   ├── users.json
@@ -61,8 +56,7 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversation
 |
 ├── notebooks
 │   └── card_detection.ipynb
-├── server.log
-├── server.py
+
 ├── src
 │   ├── __init__.py
 │   ├── background_search.py
@@ -72,8 +66,14 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversation
 │   ├── llm.py
 │   ├── ocr_to_dict.py
 │   └── retriever.py
+│
+├── __init__.py
+├── server.log
+├── server.py
+├── app.py
+├── client.py
 ├── todo.md
-└── vector_dbs
+└── README.md
 
 ```
 
