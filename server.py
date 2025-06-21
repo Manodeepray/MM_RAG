@@ -11,7 +11,7 @@ import  asyncio
 from pydantic import BaseModel
 import jwt
 from fastapi import UploadFile, File, Form
-from typing import List
+from typing import List , Union
 
 import logging
 import sys
@@ -31,10 +31,13 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
+class ChatTurn(BaseModel):
+    user: str
+    chatbot: Union[str, Dict[str, str]]
 
 class ChatRequest(BaseModel):
     message : str
+    memory: List[ChatTurn]
 
 class loginRegisterPayload(BaseModel):
     payload : str
@@ -127,16 +130,16 @@ async def retrieve(db_id):
 
 async def query_retriever(db_id:str , query : ChatRequest):
     user_message = query.message
+    memory = query.memory
     
-    
-    logger.info(f"Received query for db_id={db_id}: {user_message}")
+    logger.info(f"Received query for db_id={db_id}: {user_message} ||  length of conversation memory {len(memory)}")
     if db_id not in llm_cache:
         logger.warning(f"LLM not loaded for db_id={db_id}")
         return {"error":"user chatot not loaded"}
     
     llm = llm_cache[db_id]
     
-    response = llm.chatcompletion(query=user_message )
+    response = llm.chatcompletion(query=user_message , memory = memory )
     logger.info(f"Chatbot response: {response}")
     return {"response" : response}
     

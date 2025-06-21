@@ -2,7 +2,7 @@
 # ContactX – Intelligent Contact Management with RAG
 
 **ContactX** is an AI-powered smart assistant for managing contact cards.  
-It leverages **OCR**, **background search**, **FAISS vector DB**, and **LLM-based retrieval** to extract, enrich, and interact with contact data intelligently.
+It leverages **OCR**, **background search**, **FAISS vector DB**, **Conversational Mwmory**,and **LLM-based retrieval** to extract, enrich, and interact with contact data intelligently.
 
 ---
 
@@ -14,6 +14,7 @@ It leverages **OCR**, **background search**, **FAISS vector DB**, and **LLM-base
 - 🧠 Enriches contact information and stores it in a **FAISS** vector DB
 - 💡 Uses LangChain's FAISS retriever to index and search contact data intelligently
 - 💬 Interacts with the data using **LLM** (Groq - `llama3-70b`)
+- 🧠 Smart conversation using short-term Chat Memory for each session
 - 🔐 Uses **JWT authentication** and **FastAPI logging**
 - 🌐 Simple **Flask web frontend** with upload & chat UI
 
