@@ -153,7 +153,10 @@ flask run
 
 * [ ] Add contact tags (e.g., category: vendor, HR)
 * [ ] Vector DB cleanup & management dashboard
-* [ ] Dockerize and dploy on instance , add loadbancing etc 
+* [ ] Dockerize and dploy on instance , add loadbancing etc
+* [ ] linting 
+* [ ] Ci/Cd 
+* [ ] Eval / test scripts 
 
 ---
 
