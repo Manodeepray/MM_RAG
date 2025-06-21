@@ -13,7 +13,45 @@ from src import auth
 app = Flask(__name__)
 app.secret_key = "your_secret"
 
+
+
+SESSION_MEMORY = []
 FASTAPI_URL = "http://localhost:8000"  # Your FastAPI base URL
+
+
+
+
+
+
+
+def sanitize_memory(memory):
+    sanitized = []
+    for entry in memory:
+        user_msg = entry.get("user", "")
+        chatbot_reply = entry.get("chatbot", "")
+        if isinstance(chatbot_reply, dict):
+            chatbot_reply = chatbot_reply.get("response", str(chatbot_reply))  # fallback to str
+        sanitized.append({"user": user_msg, "chatbot": chatbot_reply})
+    return sanitized
+
+
+
+def get_memory(k:int = 5):
+    if len(SESSION_MEMORY) == 0:
+        return [{"none":"none"}]
+    elif len(SESSION_MEMORY) == 1:
+        return SESSION_MEMORY[-1:]
+    elif len(SESSION_MEMORY) == 2:
+        return SESSION_MEMORY[-2:]
+    elif len(SESSION_MEMORY) == 3:
+        return SESSION_MEMORY[-3:]
+    elif len(SESSION_MEMORY) == 4:
+        return SESSION_MEMORY[-4:]
+    else :
+        return SESSION_MEMORY[-1*k:]
+    
+
+
 
 @app.route("/")
 def home():
@@ -73,7 +111,15 @@ def chat():
 def query():
     db_id = session.get("db_id")
     user_message = request.json.get("message")
-    response = requests.post(f"{FASTAPI_URL}/users/{db_id}/query", json={"message": user_message})
+    conversation_memory = sanitize_memory(get_memory(k = 5)) 
+    
+    response = requests.post(f"{FASTAPI_URL}/users/{db_id}/query", json={"message": user_message , "memory": conversation_memory})
+    
+    conversation = {"user":  user_message , "chatbot": response.json() }
+    
+    # print("\n\n" + f"{conversation_memory}"+"\n\n")
+    
+    SESSION_MEMORY.append(conversation) 
     return jsonify(response.json())
 
 @app.route("/add_contacts", methods=["POST"])
