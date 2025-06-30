@@ -13,6 +13,9 @@ torch
 Pillow
 pyjwt
 langchain
-
+langchain-commmunity
+langchain-huggingface
+sentence-transformers
+"fastapi[standard]"
 # === Flask Frontend ===
 flask
