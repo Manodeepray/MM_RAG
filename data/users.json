@@ -11,6 +11,10 @@
         "rick": {
             "password": "12345",
             "db_id": "user_db_rick"
+        },
+        "manish": {
+            "password": "12345",
+            "db_id": "user_db_manish"
         }
     }
 }

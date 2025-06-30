@@ -42,4 +42,7 @@ class LLM:
         
         return response
     
+if __name__ == "__main__":
     
+    llm = LLM()
+    print(llm.get_response(prompt="hello"))

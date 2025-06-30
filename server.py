@@ -2,8 +2,12 @@
 import os
 from pathlib import Path
 from datetime import datetime
-from .src import ocr_to_dict , image_to_ocr , chatbot , retriever
-from .src import auth as auth
+try:
+    from .src import ocr_to_dict , image_to_ocr , chatbot , retriever
+    from .src import auth as auth
+except:
+    from src import ocr_to_dict , image_to_ocr , chatbot , retriever
+    from src import auth as auth
 from typing import Dict
 
 from fastapi import FastAPI ,  Request

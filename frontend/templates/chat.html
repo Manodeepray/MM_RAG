@@ -29,17 +29,29 @@
       </div>
     </div>
 
-    <!-- Upload Section -->
-    <div class="upload-section">
-      <h3>Add Contacts</h3>
-      <form id="upload-form" enctype="multipart/form-data">
-        <input type="file" name="images" multiple />
-        <button type="submit">Upload</button>
-      </form>
-    </div>
-  </div>
+<!-- Upload Section -->
+<div class="upload-section">
+  <h3>Add Contacts</h3>
+  <form id="upload-form" enctype="multipart/form-data">
+    <input type="file" name="images" multiple />
+    <button type="submit">Upload</button>
+  </form>
 
+  <!-- Toggle Webcam -->
+  <button type="button" onclick="toggleWebcam()">Use Webcam</button>
+
+  <!-- Webcam Section (Initially Hidden) -->
+  <div id="webcam-section" style="display: none; margin-top: 10px;">
+    <video id="webcam" autoplay playsinline width="320" height="240"></video><br />
+    <button type="button" onclick="captureImage()">Capture</button>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+  </div>
+</div>
+
+
+ <!-- Scripts -->
   <script>
+    // Send chat message
     async function sendMessage() {
       const msg = document.getElementById("msg").value;
       const res = await fetch("/query", {
@@ -52,8 +64,10 @@
       chatBox.innerHTML += `<div class="chat user"><b>You:</b> ${msg}</div>`;
       chatBox.innerHTML += `<div class="chat bot">${marked.parse(data.response)}</div>`;
       chatBox.scrollTop = chatBox.scrollHeight;
+      document.getElementById("msg").value = "";
     }
 
+    // Handle file upload
     document.getElementById("upload-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -63,6 +77,50 @@
       });
       alert(await res.text());
     });
+
+    // Webcam controls
+    let webcamStream = null;
+
+    function toggleWebcam() {
+      const section = document.getElementById("webcam-section");
+      if (section.style.display === "none") {
+        section.style.display = "block";
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            webcamStream = stream;
+            document.getElementById('webcam').srcObject = stream;
+          })
+          .catch(err => {
+            console.error("Webcam error:", err);
+            alert("Unable to access webcam.");
+          });
+      } else {
+        section.style.display = "none";
+        if (webcamStream) {
+          webcamStream.getTracks().forEach(track => track.stop());
+        }
+      }
+    }
+
+    // Capture and upload webcam image
+    function captureImage() {
+      const canvas = document.getElementById('canvas');
+      const video = document.getElementById('webcam');
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(async function(blob) {
+        const formData = new FormData();
+        formData.append("images", blob, "webcam.jpg");
+
+        const res = await fetch("/add_contacts", {
+          method: "POST",
+          body: formData,
+        });
+
+        alert(await res.text());
+      }, "image/jpeg");
+    }
   </script>
 
 </body>

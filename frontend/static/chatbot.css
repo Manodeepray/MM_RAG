@@ -136,3 +136,9 @@ body {
 .upload-section button:hover {
   background-color: #1a2747;
 }
+
+
+#webcam {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
